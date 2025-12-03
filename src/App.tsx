@@ -10,6 +10,7 @@ import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
 import { ShareButton } from "./component/shareButton"
 import { STATIC_ONLY } from "./env"
+import { MusicPlayer } from "./component/music/music"
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         </LazyDiv>
 
         <ShareButton />
+        <MusicPlayer />
       </div>
     </div>
   )
