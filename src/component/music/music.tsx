@@ -9,22 +9,16 @@ export function MusicPlayer() {
     const audio = audioRef.current!;
     audio.volume = 1.0;
 
-    const tryPlay = () => {
-      audio
-        .play()
-        .then(() => setPlaying(true))
-        .catch(() => {}); // autoplay 제한 시 무시
-      window.removeEventListener("click", tryPlay);
-      window.removeEventListener("touchstart", tryPlay);
-    };
-
-    window.addEventListener("click", tryPlay);
-    window.addEventListener("touchstart", tryPlay);
-
-    return () => {
-      window.removeEventListener("click", tryPlay);
-      window.removeEventListener("touchstart", tryPlay);
-    };
+    // 자동 재생 시도
+    audio.play()
+      .then(() => {
+        setPlaying(true); // 자동재생 성공
+      })
+      .catch(() => {
+        // 자동재생 실패 (브라우저 정책 때문에)
+        setPlaying(false);
+        // 이 상태에서는 버튼 클릭 시 바로 하나의 play()로 성공함
+      });
   }, []);
 
   const togglePlay = () => {
@@ -33,14 +27,16 @@ export function MusicPlayer() {
       audio.pause();
       setPlaying(false);
     } else {
-      audio.play();
-      setPlaying(true);
+      audio.play()
+        .then(() => setPlaying(true))
+        .catch(() => {});
     }
   };
 
   return (
     <>
-      <audio ref={audioRef} src="/bgm.mp3" loop />
+      <audio ref={audioRef} src="/wedding-invitation/bgm.mp3" loop />
+
       <button className="music-button" onClick={togglePlay}>
         {playing ? "🔊 음악 끄기" : "🔈 음악 켜기"}
       </button>
