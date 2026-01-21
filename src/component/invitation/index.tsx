@@ -26,12 +26,12 @@ export const Invitation = () => {
       <div className="break" />
 
       <div className="content">하나님의 자녀 동근이와 채린이가</div>
-      <div className="content">하나 되어</div>
-      <div className="content">작은 하나님 나라를 일구어 가려고 합니다.</div>
+      <div className="content">기도로 준비해 온</div>
+      <div className="content">작은 하나님 나라를 이루려 합니다. </div>
       <div className="break" />
-      <div className="content">바쁜 와중에 오시는 길이 수고스러우시겠지만,</div>
-      <div className="content">함께 저희의 시작을 응원해주시고</div>
-      <div className="content">축복해 주시면 감사하겠습니다. </div>
+      <div className="content">거룩한 예식을 통해 그 걸음을 시작하오니</div>
+      <div className="content">함께 기뻐해 주시고 축복해 주신다면</div>
+      <div className="content">저희에게 큰 은혜가 될 것입니다.</div>
 
       <div className="break" />
 
