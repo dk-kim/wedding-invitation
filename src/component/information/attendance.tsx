@@ -228,8 +228,8 @@ const AttendanceModalContent = () => {
       </div>
 
       <div className="input-group">
-        {/* 라벨을 '식사'에서 '참석여부'로 변경 */}
-        <div className="label">참석여부</div>
+        {/* 라벨을 '식사'에서 '참석 여부'로 변경 */}
+        <div className="label">참석 여부</div>
         <div className="radio-input">
           <label>
             <input
