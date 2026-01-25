@@ -35,7 +35,7 @@ export function MusicPlayer() {
 
   return (
     <>
-      <audio ref={audioRef} src="/wedding-invitation/bgm.mp3" loop />
+      <audio ref={audioRef} src="/wedding-invitation/bgm2.mp3" loop />
 
       <button className="music-button" onClick={togglePlay}>
         {playing ? "🔊 음악 끄기" : "🔈 음악 켜기"}
