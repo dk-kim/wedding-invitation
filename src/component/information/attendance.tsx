@@ -112,20 +112,15 @@ export const AttendanceInfo = () => {
 
 const AttendanceModalContent = () => {
   const { closeModal } = useModal()
-  const inputRef = useRef({ side: {}, meal: {} }) as React.RefObject<{
-    side: {
-      groom: HTMLInputElement
-      bride: HTMLInputElement
-    }
-    name: HTMLInputElement
-    meal: {
-      yes: HTMLInputElement
-      undecided: HTMLInputElement
-      no: HTMLInputElement
-    }
-    count: HTMLInputElement
-  }>
+  
+  // 상태 관리로 변경 (화면이 즉시 바뀌어야 하므로)
+  const [side, setSide] = useState<"groom" | "bride">("groom")
+  const [attendance, setAttendance] = useState<string>("yes") // yes, bus, undecided, no
   const [loading, setLoading] = useState(false)
+
+  // 이름과 인원은 그대로 ref 사용 (타이핑할 때마다 렌더링 방지)
+  const nameRef = useRef<HTMLInputElement>(null)
+  const countRef = useRef<HTMLInputElement>(null)
 
   return (
     <form
@@ -135,25 +130,8 @@ const AttendanceModalContent = () => {
         e.preventDefault()
         setLoading(true)
         try {
-          const side = inputRef.current.side.groom.checked
-            ? "groom"
-            : inputRef.current.side.bride
-              ? "bride"
-              : null
-          const name = inputRef.current.name.value
-          const meal = inputRef.current.meal.yes.checked
-            ? "yes"
-            : inputRef.current.meal.undecided.checked
-              ? "undecided"
-              : inputRef.current.meal.no.checked
-                ? "no"
-                : null
-          const count = Number(inputRef.current.count.value)
-
-          if (!side) {
-            alert("신랑 또는 신부를 선택해주세요.")
-            return
-          }
+          const name = nameRef.current?.value
+          const count = Number(countRef.current?.value)
 
           if (!name) {
             alert("성함을 입력해주세요.")
@@ -161,11 +139,6 @@ const AttendanceModalContent = () => {
           }
           if (name.length > RULES.name.maxLength) {
             alert(`성함을 ${RULES.name.maxLength}자 이하로 입력해주세요.`)
-            return
-          }
-
-          if (!meal) {
-            alert("식사 여부를 선택해주세요.")
             return
           }
 
@@ -178,13 +151,21 @@ const AttendanceModalContent = () => {
             return
           }
 
+          // 서버로 보낼 데이터 (meal 필드에 attendance 값을 넣습니다)
+          // DB에 'bus'라는 값이 들어가도 되는지 확인 필요!
           const res = await fetch(`${SERVER_URL}/attendance`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ side, name, meal, count }),
+            body: JSON.stringify({ 
+              side, 
+              name, 
+              meal: attendance, // 서버 필드명은 meal 그대로 유지 (값은 bus 등이 들어감)
+              count 
+            }),
           })
+          
           if (!res.ok) {
             throw new Error(res.statusText)
           }
@@ -207,11 +188,9 @@ const AttendanceModalContent = () => {
               type="radio"
               name="side"
               value="groom"
+              checked={side === "groom"}
+              onChange={() => setSide("groom")}
               hidden
-              defaultChecked
-              ref={(ref) => {
-                inputRef.current.side.groom = ref as HTMLInputElement
-              }}
             />
             <span>신랑</span>
           </label>
@@ -222,10 +201,13 @@ const AttendanceModalContent = () => {
               type="radio"
               name="side"
               value="bride"
-              hidden
-              ref={(ref) => {
-                inputRef.current.side.bride = ref as HTMLInputElement
+              checked={side === "bride"}
+              onChange={() => {
+                setSide("bride")
+                // 신부 측으로 바꾸면 '버스' 선택 상태를 '참석'으로 초기화 (신부측엔 버스가 없으니까)
+                if (attendance === "bus") setAttendance("yes")
               }}
+              hidden
             />
             <span>신부</span>
           </label>
@@ -240,38 +222,50 @@ const AttendanceModalContent = () => {
             type="text"
             placeholder="참석자 성함을 입력해주세요."
             maxLength={RULES.name.maxLength}
-            ref={(ref) => {
-              inputRef.current.name = ref as HTMLInputElement
-            }}
+            ref={nameRef}
           />
         </div>
       </div>
 
       <div className="input-group">
-        <div className="label">식사</div>
+        {/* 라벨을 '식사'에서 '참석여부'로 변경 */}
+        <div className="label">참석여부</div>
         <div className="radio-input">
           <label>
             <input
               disabled={loading}
               type="radio"
-              name="meal"
+              name="attendance"
               value="yes"
-              ref={(ref) => {
-                inputRef.current.meal.yes = ref as HTMLInputElement
-              }}
+              checked={attendance === "yes"}
+              onChange={(e) => setAttendance(e.target.value)}
             />
-            <span>예정</span>
+            <span>참석</span>
           </label>
+
+          {/* 신랑 측일 때만 보이는 '버스탑승' 옵션 */}
+          {side === "groom" && (
+            <label>
+              <input
+                disabled={loading}
+                type="radio"
+                name="attendance"
+                value="bus"
+                checked={attendance === "bus"}
+                onChange={(e) => setAttendance(e.target.value)}
+              />
+              <span>버스탑승(대전)</span>
+            </label>
+          )}
 
           <label>
             <input
               disabled={loading}
               type="radio"
-              name="meal"
+              name="attendance"
               value="undecided"
-              ref={(ref) => {
-                inputRef.current.meal.undecided = ref as HTMLInputElement
-              }}
+              checked={attendance === "undecided"}
+              onChange={(e) => setAttendance(e.target.value)}
             />
             <span>미정</span>
           </label>
@@ -280,11 +274,10 @@ const AttendanceModalContent = () => {
             <input
               disabled={loading}
               type="radio"
-              name="meal"
+              name="attendance"
               value="no"
-              ref={(ref) => {
-                inputRef.current.meal.no = ref as HTMLInputElement
-              }}
+              checked={attendance === "no"}
+              onChange={(e) => setAttendance(e.target.value)}
             />
             <span>불참</span>
           </label>
@@ -299,9 +292,7 @@ const AttendanceModalContent = () => {
             type="number"
             min={RULES.count.min}
             defaultValue={RULES.count.default}
-            ref={(ref) => {
-              inputRef.current.count = ref as HTMLInputElement
-            }}
+            ref={countRef}
           />
           명
         </div>
