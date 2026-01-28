@@ -1,24 +1,29 @@
-import coverImage from "./QWE_0233.jpg"
-import image1 from "./QWE_0039.jpg"
-import image2 from "./QWE_0064.jpg"
-import image3 from "./QWE_9213.jpg"
-import image4 from "./QWE_9341.jpg"
-import image5 from "./QWE_9573.jpg"
-import image6 from "./QWE_9467.jpg"
-import image7 from "./QWE_0180.jpg"
-import image8 from "./QWE_0351.jpg"
-import image9 from "./QWE_0667.jpg"
-import image10 from "./QWE_0489.jpg"
-import image11 from "./QWE_1107.jpg"
-import image12 from "./QWE_1352.jpg"
-import image13 from "./QWE_1489.jpg"
-import image14 from "./A7M00020.JPG"
-import image15 from "./A7M09818.JPG"
-import image16 from "./DSCF7891.JPG"
-import image17 from "./DSC00454.JPG"
-import image18 from "./A7M00098.JPG"
-import image19 from "./A7M09503.JPG"
-import image20 from "./A7M09381.JPG"
+import coverImage from "./11.jpg"
+import image1 from "./17.jpg"
+import image2 from "./16.jpg"
+import image3 from "./20.jpg"
+import image4 from "./19.jpg"
+import image5 from "./15.jpg"
+import image6 from "./14.jpg"
+import image7 from "./9.jpg"
+import image9 from "./12.jpg"
+import image10 from "./6.jpg"
+import image11 from "./5.jpg"
+import image12 from "./3.jpg"
+import image13 from "./4.jpg"
+import image14 from "./18.jpg"
+import image15 from "./7.jpg"
+import image16 from "./8.jpg"
+import image17 from "./2.jpg"
+import image18 from "./10.jpg"
+import image19 from "./1.jpg"
+import image20 from "./A7M00020.JPG"
+import image21 from "./A7M09818.JPG"
+import image22 from "./DSCF7891.JPG"
+import image23 from "./DSC00454.JPG"
+import image24 from "./A7M00098.JPG"
+import image25 from "./A7M09503.JPG"
+import image26 from "./A7M09381.JPG"
 
 export const COVER_IMAGE = coverImage
 
@@ -30,7 +35,6 @@ export const GALLERY_IMAGES = [
   image5,
   image6,
   image7,
-  image8,
   image9,
   image10,
   image11,
@@ -43,4 +47,10 @@ export const GALLERY_IMAGES = [
   image18,
   image19,
   image20,
+  image21,
+  image22,
+  image23,
+  image24,
+  image25,
+  image26
 ]
