@@ -34,14 +34,14 @@ export const Location = () => {
           <div className="content">
           * 자가용 이용시
             <br />
-            <b>대구-포항 고속도로</b> 이용시
+            대구-포항 고속도로 이용시
             <br />
             → 포항요금소 직진 이동
             <br />→ 포항시청 방향으로 직진
             <br />→ SK, GS 이동주유소 사거리 직진
             <br />→ 포항시청 삼거리 좌회전
             <br />→ 시청 앞 삼거리 우회전
-            <br /> <b>THE QUEEN</b>
+            <br /> THE QUEEN
           </div>
         </div>
         <div className="location-info">
