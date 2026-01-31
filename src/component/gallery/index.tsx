@@ -342,7 +342,7 @@ export const Gallery = () => {
             </div>
           </div>
         </div>
-        <div className="carousel-indicator">
+        {/* <div className="carousel-indicator">
           {CAROUSEL_ITEMS.map((_, idx) => (
             <button
               key={idx}
@@ -352,6 +352,26 @@ export const Gallery = () => {
               }
             />
           ))}
+        </div> */}
+        <div 
+          className="carousel-indicator" 
+          style={{ 
+            pointerEvents: "none", // 터치 방해 안 하도록
+            bottom: "20px"         // 사진 위에 살짝 떠 있게
+          }}
+        >
+          <span style={{ 
+              backgroundColor: "rgba(0, 0, 0, 0.4)", // 반투명 검은 배경
+              color: "#fff",                         // 흰색 글자
+              padding: "6px 14px",
+              borderRadius: "20px",                  // 캡슐 모양
+              fontSize: "0.85rem",
+              letterSpacing: "1px",
+              fontWeight: "500",
+              backdropFilter: "blur(4px)"            // 배경 흐림 효과 (고급스러움)
+          }}>
+            {slide + 1} / {CAROUSEL_ITEMS.length}
+          </span>
         </div>
       </div>
 

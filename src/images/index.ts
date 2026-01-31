@@ -17,13 +17,16 @@ import image16 from "./8.jpg"
 import image17 from "./2.jpg"
 import image18 from "./10.jpg"
 import image19 from "./1.jpg"
-import image20 from "./A7M00020.JPG"
-import image21 from "./A7M09818.JPG"
-import image22 from "./DSCF7891.JPG"
-import image23 from "./DSC00454.JPG"
-import image24 from "./A7M00098.JPG"
-import image25 from "./A7M09503.JPG"
-import image26 from "./A7M09381.JPG"
+import image20 from "./21.jpg"
+import image21 from "./22.jpg"
+import image22 from "./23.jpg"
+import image23 from "./24.jpg"
+import image24 from "./25.jpg"
+import image25 from "./26.jpg"
+import image26 from "./27.jpg"
+import image27 from "./28.jpg"
+import image28 from "./29.jpg"
+import image29 from "./30.JPG"
 
 export const COVER_IMAGE = coverImage
 
@@ -36,6 +39,7 @@ export const GALLERY_IMAGES = [
   image6,
   image7,
   image9,
+  image10,
   image11,
   image12,
   image13,
@@ -45,11 +49,14 @@ export const GALLERY_IMAGES = [
   image17,
   image18,
   image19,
-  //image20,
+  image20,
   image21,
   image22,
   image23,
   image24,
   image25,
-  image26
+  image26,
+  image27,
+  image28,
+  image29
 ]
