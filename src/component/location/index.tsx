@@ -16,6 +16,22 @@ export const Location = () => {
         <Map />
       </LazyDiv>
       <LazyDiv className="card location">
+        {/* ✨ [여기] 아래 코드를 통째로 추가하세요 (전세버스 안내) */}
+        <div className="location-info">
+          <div className="transportation-icon-wrapper">
+            <BusIcon className="transportation-icon" />
+          </div>
+          <div className="heading" style={{ color: "var(--theme-color)" }}>
+            전세버스 (대전-포항)
+          </div>
+          <div />
+          <div className="content">
+            대전 출발 시간: 9시 30분 <br />
+            출발 장소: 유성장로교회 주차장 <br />
+            포항 출발 시간: <br />
+          </div>
+        </div>
+        {/* ✨ 추가 끝 */}
         <div className="location-info">
           <div className="transportation-icon-wrapper">
             <BusIcon className="transportation-icon" />
@@ -36,12 +52,11 @@ export const Location = () => {
             <br />
             대구-포항 고속도로 이용시
             <br />
-            → 포항요금소 직진 이동
-            <br />→ 포항시청 방향으로 직진
+            → 포항요금소 직진 (포항시청 방향) 이동
             <br />→ SK, GS 이동주유소 사거리 직진
             <br />→ 포항시청 삼거리 좌회전
             <br />→ 시청 앞 삼거리 우회전
-            <br /> THE QUEEN
+            <br />→ THE QUEEN
           </div>
         </div>
         <div className="location-info">
