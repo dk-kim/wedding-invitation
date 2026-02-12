@@ -28,7 +28,6 @@ export const Location = () => {
           <div className="content">
             대전 출발 시간: 9시 30분 <br />
             출발 장소: 유성장로교회 주차장 <br />
-            포항 출발 시간: <br />
           </div>
         </div>
         {/* ✨ 추가 끝 */}
