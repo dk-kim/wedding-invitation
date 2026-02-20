@@ -148,6 +148,29 @@ export const Information2 = () => {
   )
 }
 
+// export const Information = () => {
+//   if (STATIC_ONLY) {
+//     return (
+//       <>
+//         <LazyDiv className="card information">
+//           <Information1 />
+//         </LazyDiv>
+//         <LazyDiv className="card information">
+//           <Information2 />
+//         </LazyDiv>
+//       </>
+//     )
+//   }
+
+//   return (
+//     <LazyDiv className="card information">
+//       <Information1 />
+//       <Information2 />
+//       <AttendanceInfo />
+//     </LazyDiv>
+//   )
+// }
+
 export const Information = () => {
   if (STATIC_ONLY) {
     return (
@@ -163,10 +186,17 @@ export const Information = () => {
   }
 
   return (
-    <LazyDiv className="card information">
-      <Information1 />
-      <Information2 />
-      <AttendanceInfo />
-    </LazyDiv>
+    <>
+      {/* 1단: 식사 안내 + 마음 전하기 (기존처럼 하나로 묶음) */}
+      <LazyDiv className="card information">
+        <Information1 />
+        <Information2 />
+      </LazyDiv>
+      
+      {/* 2단: 참석 의사 전달 (이 녀석만 따로 뺌!) */}
+      <LazyDiv className="card information">
+        <AttendanceInfo />
+      </LazyDiv>
+    </>
   )
 }
